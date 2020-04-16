@@ -10,6 +10,7 @@ else {
 	$user = $_SESSION['user_login'];
 	$sql="SELECT * FROM user WHERE id='$user'";
 	$result=$conn->query($sql);
+	//$result = mysql_query("SELECT * FROM user WHERE id='$user'");
 		$get_user_email = $result->fetch(PDO::FETCH_ASSOC);
 			$uname_db = $get_user_email['firstName'];
 			$uemail_db = $get_user_email['email'];
@@ -38,8 +39,10 @@ if (isset($_REQUEST['cid'])) {
 	}
 }
 
+$search_value = "";
 
 
+//order
 
 ?>
 <!DOCTYPE html>
@@ -53,6 +56,26 @@ if (isset($_REQUEST['cid'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/core-style.css">
     <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+     .Mybtn {
+  display: inline-block;
+  min-width: 40px;
+  height: 40px;
+  color: #ffffff;
+  border: none;
+  border-radius: 0;
+  padding: 0 7px;
+  font-size: 18px;
+  line-height: 56px;
+  background-color: #FFA500;
+  font-weight: 400; }
+  .Mybtn.active, .Mybtn:hover, .Mybtn:focus {
+    font-size: 18px;
+    color: #ffffff;
+    background-color: white; }
+	</style>
+   
+
 </head>
 
 <body>
@@ -111,7 +134,7 @@ if (isset($_REQUEST['cid'])) {
             <?php 
             if ($user!="") {
             
-               echo' <a href="mycart.php?uid='.$user.'" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>';
+               echo' <a href="mycart.php?uid='.$user.'" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart </a>';
                echo' <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>';
             }
             ?>
@@ -192,7 +215,7 @@ if (isset($_REQUEST['cid'])) {
                                                     
                                                    
                                                     <td class="cart_product_desc">
-                                                        <?php echo '<div class="home-prodlist-img"><a href="delete_cart.php?cid='.$pId.'" style="text-decoration: none;">X</a>
+                                                        <?php echo '<div class="btn Mybtn " style="width=1px;"><a href="delete_cart.php?cid='.$pId.'" style="text-decoration: none;">X</a>
 												</div>' ?>
                                                     </td>
                                                 </tr>
@@ -215,7 +238,7 @@ if (isset($_REQUEST['cid'])) {
                                             <?php echo $total ?></span></li>
                                 </ul>
                                 <div class="cart-btn mt-100">
-                                    <a href="cart.html" class="btn amado-btn w-100">Comment</a>
+                                    <a href="checkout.php" class="btn amado-btn w-100">Comment</a>
                                 </div>
                             </div>
                         </div>
