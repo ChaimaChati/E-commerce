@@ -2,22 +2,25 @@
 <?php 
 ob_start();
 session_start();
+
 if (!isset($_SESSION['user_login'])) {
 	$user = "";
 }
+
 else {
-	$user = $_SESSION['user_login'];
+$user = $_SESSION['user_login'];
     $sql="SELECT * FROM user WHERE id='$user'";
     $result= $conn->query($sql);
+        $get_user_email =$result->fetch(PDO::FETCH_ASSOC);
+            $uname_db = $get_user_email['firstName'];
 
-		$get_user_email =$result->fetch(PDO::FETCH_ASSOC);
-			$uname_db = $get_user_email['firstName'];
 }
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>HCH Furniture</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8 sans BOM" />
             <link rel="icon" href="img/core-img/favicon.ico">
 
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -86,7 +89,7 @@ else {
             <?php 
             if ($user!="") {
             
-               echo' <a href="mycart.php?uid='.$user.'" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>';
+               echo' <a href="mycart.php?uid='.$user.'" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart </a>';
                echo' <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>';
             }
             ?>
