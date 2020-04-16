@@ -10,6 +10,7 @@ else {
     $sql="SELECT * FROM user WHERE id='$user'";
     $result= $conn->query($sql);
 
+    //$result = mysql_query("SELECT * FROM user WHERE id='$user'");
         $get_user_email =$result->fetch(PDO::FETCH_ASSOC);
             $uname_db = $get_user_email['firstName'];
 }
@@ -19,7 +20,7 @@ else {
 
 <head>
     <title>Beds</title>
-        <link rel="icon" href="img/core-img/favicon.ico">
+        <link rel="icon" href="../img/core-img/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -232,7 +233,7 @@ else {
                                     </div>
                                     <div class="product-description d-flex align-items-center justify-content-between">
                                     <!-- Product Meta Data -->
-                                    <div class="product-meta-data">
+                                    <div >
                                     <div class="line"></div>
                                     <span style="font-size: 15px;">'.$pName.'</span><br> Price: '.$price.'
                                     </div>
@@ -246,7 +247,7 @@ else {
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
                                         <div class="cart">
-                                            <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="../img/core-img/cart.png" alt=""></a>
+                                            <a  data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="../img/core-img/cart.png" alt=""></a>
                                         </div>
                                     </div>
                                 </li>
