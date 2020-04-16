@@ -19,7 +19,7 @@ else {
 <html>
 <head>
 	<title>Home Deco</title>
-        <link rel="icon" href="img/core-img/favicon.ico">
+        <link rel="icon" href="../img/core-img/favicon.ico">
 
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -94,7 +94,7 @@ else {
             <?php 
             if ($user!="") {
             
-              echo' <a href="../mycart.php?uid='.$user.'" class="cart-nav"><img src="../img/core-img/cart.png" alt=""> Cart </a>';
+               echo' <a href="../mycart.php?uid='.$user.'" class="cart-nav"><img src="../img/core-img/cart.png" alt=""> Cart </a>';
                echo' <a href="#" class="fav-nav"><img src="../img/core-img/favorites.png" alt=""> Favourite</a>';
             }
             ?>
@@ -218,6 +218,8 @@ else {
 		<?php 
 			$sql="SELECT * FROM products WHERE available >='1' AND item ='homedeco'  ORDER BY id DESC LIMIT 10";
 			$result = $conn->query($sql);
+
+
 				$num_rows = $result->fetchColumn();
 
 					if ($num_rows) {
@@ -243,7 +245,7 @@ else {
                             		</div>
 									<div class="product-description d-flex align-items-center justify-content-between">
                                 	<!-- Product Meta Data -->
-                                	<div class="product-meta-data">
+                                	<div >
                                     <div class="line"></div>
                                     <span style="font-size: 15px;">'.$pName.'</span><br> Price: '.$price.'
                                 	</div>
@@ -257,7 +259,7 @@ else {
 	                                        <i class="fa fa-star" aria-hidden="true"></i>
 	                                    </div>
 	                                    <div class="cart">
-	                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="../img/core-img/cart.png" alt=""></a>
+	                                        <a  data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="../img/core-img/cart.png" alt=""></a>
 	                                    </div>
 	                                </div>
 								</li>
@@ -265,7 +267,6 @@ else {
 						';
 
 						}
-						
 				}
 			
 		?>
