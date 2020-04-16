@@ -19,7 +19,7 @@ else {
 <html>
 <head>
 	<title>Tables</title>
-        <link rel="icon" href="img/core-img/favicon.ico">
+        <link rel="icon" href="../img/core-img/favicon.ico">
 
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -94,7 +94,7 @@ else {
             <?php 
             if ($user!="") {
             
-              echo' <a href="../mycart.php?uid='.$user.'" class="cart-nav"><img src="../img/core-img/cart.png" alt=""> Cart </a>';
+                echo' <a href="../mycart.php?uid='.$user.'" class="cart-nav"><img src="../img/core-img/cart.png" alt=""> Cart</a>';
                echo' <a href="#" class="fav-nav"><img src="../img/core-img/favorites.png" alt=""> Favourite</a>';
             }
             ?>
@@ -220,19 +220,18 @@ else {
 			$result = $conn->query($sql);
 
 				$num_rows = $result->fetchColumn();
-
+				
 					if ($num_rows) {
 					echo '<ul id="recs">';
 
-					
+				
 					while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 						$id = $row['id'];
 						$pName = $row['pName'];
 						$price = $row['price'];
 						$description = $row['description'];
 						$picture = $row['picture'];
-
-
+						
 						echo '
 							<ul style="float: left;">
 								<li style="float: center; padding: 0px 15px 25px 25px;">
@@ -244,7 +243,7 @@ else {
                             		</div>
 									<div class="product-description d-flex align-items-center justify-content-between">
                                 	<!-- Product Meta Data -->
-                                	<div class="product-meta-data">
+                                	<div >
                                     <div class="line"></div>
                                     <span style="font-size: 15px;">'.$pName.'</span><br> Price: '.$price.'
                                 	</div>
@@ -258,7 +257,7 @@ else {
 	                                        <i class="fa fa-star" aria-hidden="true"></i>
 	                                    </div>
 	                                    <div class="cart">
-	                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="../img/core-img/cart.png" alt=""></a>
+	                                        <a  data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="../img/core-img/cart.png" alt=""></a>
 	                                    </div>
 	                                </div>
 								</li>
@@ -266,6 +265,9 @@ else {
 						';
 
 						}
+						/*echo '</div>';
+								echo '</div>';
+									echo '</div>';		*/		
 
 				}
 			
