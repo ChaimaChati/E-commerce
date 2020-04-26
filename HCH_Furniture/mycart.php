@@ -135,7 +135,7 @@ $search_value = "";
             if ($user!="") {
             
                echo' <a href="mycart.php?uid='.$user.'" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart </a>';
-               echo' <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>';
+                echo' <a href="telecharger.php" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> rapport</a>';
             }
             ?>
 
@@ -164,8 +164,10 @@ $search_value = "";
                                                 <tr>
                                                     <th>picture</th>
                                                     <th>Product Name</th>
-                                                    <th>Price</th>
-                                                    <th>Pieces</th>
+                                                    <th style="margin-right: -30px;">Price</th>
+                                                    <th style="margin-right: -80px;">Pieces</th>
+                                                    <th style="font-size:15px;"><?php echo '<div style="color=red;"><a href="delete_cart.php" style="text-decoration: none;">Empty Cart</a>
+												</div>' ?></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -197,19 +199,15 @@ $search_value = "";
                                                         <?php echo '<a href="OurProducts/view_product.php?pid='.$pId.'"><img src="image/product/'.$item.'/'.$picture.'" alt="Product" style="width: 200px; height: 200px;"></a>' ?>
                                                     </td>
                                                     <td class="cart_product_desc" style="margin-right: -10px;"  >
-                                                       <strong><?php echo $pName; ?></strong> 
+                                                       <h3> <strong><?php echo $pName; ?></strong> </h3>
                                                     </td>
-                                                    <td class="price" style="margin-right: -50px;">
-                                                        <span ><strong><?php echo $price; ?></strong></span>
+                                                    <td class="price" style="margin-right: -30px;">
+                                                       <h3>  <span ><strong><?php echo $price; ?></strong></span> </h3>
                                                     </td>
                                                     <td class="qty" style="margin-right: -50px;">
                                                         <div class="qty-btn d-flex">
-                                                            <p>Qty</p>
-                                                            <div class="quantity">
-                                                                <span class="qty-minus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                                <input type="number" class="qty-text" id="qty2" step="1" min="1" max="300" name="quantity" value="1">
-                                                                <span class="qty-plus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                            </div>
+                                                            <p>Qty
+                                                           <span ><strong><?php echo $quantity; ?></strong></span></p>
                                                         </div>
                                                     </td>
                                                     
