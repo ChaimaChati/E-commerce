@@ -96,7 +96,7 @@ else {
             if ($user!="") {
             
                echo' <a href="../mycart.php?uid='.$user.'" class="cart-nav"><img src="../img/core-img/cart.png" alt=""> Cart </a>';
-               echo' <a href="#" class="fav-nav"><img src="../img/core-img/favorites.png" alt=""> Favourite</a>';
+               echo' <a href="telecharger.php" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> rapport</a>';
             }
             ?>
 
