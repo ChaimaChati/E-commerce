@@ -16,8 +16,7 @@ if (isset($_POST['login'])) {
 		$user_login = mb_convert_case($user_login, MB_CASE_LOWER, "UTF-8");	
 		$password_login = ($_POST['password']);		
 		$num = 0;
-		$password_login_md5 = ($password_login);
-		$sql="SELECT * FROM user WHERE (email='$user_login') AND password='$password_login_md5'";
+		$sql="SELECT * FROM user WHERE (email='$user_login') AND password='$password_login'";
 		$result=$conn->query($sql);
 		$num = $result->rowcount();
 		$get_user_email = $result->fetch(PDO::FETCH_ASSOC);
@@ -26,18 +25,11 @@ if (isset($_POST['login'])) {
 			$_SESSION['user_login'] = $get_user_uname_db;
 			setcookie('user_login', $user_login, time() + (365 * 24 * 60 * 60), "/");
 			
-			if (isset($_REQUEST['ono'])) {
-				$ono = ($_REQUEST['ono']);
-				header("location: orderform.php?poid=".$ono."");
-			}else {
-				header('location: index.php');
-			}
+			
 			exit();
 		}
 		else {
 			header("location:signin.php");
-			
-			
 		}
 	}
 
