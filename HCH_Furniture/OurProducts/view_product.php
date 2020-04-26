@@ -1,4 +1,5 @@
 <?php include ( "../inc/connect.inc.php" ); ?>
+<?php ?>
 <?php 
 ob_start();
 session_start();
@@ -19,7 +20,6 @@ if (isset($_REQUEST['pid'])) {
 }else {
 	header('location: index.php');
 }
-
 			$sql="SELECT * FROM products WHERE id ='$pid'"  or die(mysql_error());
 			$result = $conn->query($sql);
 		
@@ -34,8 +34,6 @@ if (isset($_REQUEST['pid'])) {
 						$item = $row['item'];
 						$available =$row['available'];
 					}
-
-
 if (isset($_POST['addcart'])) {
     if (!isset($_SESSION['user_login'])) {
         header('location: ../login.php');
@@ -44,17 +42,19 @@ if (isset($_POST['addcart'])) {
     $sql="SELECT * FROM cart WHERE pid ='$pid' AND uid='$user'" or die(mysql_error());
     $result = $conn->query($sql);
 
-    if ($result->rowCount()) {
-        header('location: ../mycart.php?uid='.$user.'');
-    }else{
-        $sql="INSERT INTO cart (uid,pid,quantity) VALUES ('$user','$pid', 1)";
+	if ($result->rowCount()) {
+		header('location: ../mycart.php?uid='.$user.'');
+	}else{
+	    
+	    $qty=$_POST['qty'];
+        $sql="INSERT INTO cart (uid,pid,quantity) VALUES ('$user','$pid', '$qty')";
          $result = $conn->query($sql);
-        if($result){
-            header('location: ../mycart.php?uid='.$user.'');
-        }else{ 
-            header('location: index.php');
-        }
-    }
+		if($result){
+			header('location: ../mycart.php?uid='.$user.'');
+		}else{ 
+			header('location: index.php');
+		}
+	}
     }
 }
 ?>
@@ -63,12 +63,38 @@ if (isset($_POST['addcart'])) {
 <html>
 <head>
 	<title>View Product</title>
-        <link rel="icon" href="img/core-img/favicon.ico">
+        <link rel="icon" href="../img/core-img/favicon.ico">
 
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <link rel="stylesheet" href="../css/core-style.css">
     <link rel="stylesheet" href="../style.css">
+    
+    <style type="text/css">
+		
+ input[type=number] {
+        /*for absolutely positioning spinners*/
+        position: relative; 
+        padding: 3px;
+        padding-right: 2px;
+        width:80px;
+      }
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        opacity: 1;
+      }
+
+      input[type=number]::-webkit-outer-spin-button, 
+      input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: inner-spin-button !important;
+        width: 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+      }
+	</style>
 
 </head>
 <body>
@@ -129,9 +155,8 @@ if (isset($_POST['addcart'])) {
             <?php 
             if ($user!="") {
             
-              echo' <a href="../mycart.php?uid='.$user.'" class="cart-nav"><img src="../img/core-img/cart.png" alt=""> Cart </a>';
-               echo' <a href="#" class="fav-nav"><img src="../img/core-img/favorites.png" alt=""> Favourite</a>';
-            }
+                echo' <a href="../mycart.php?uid='.$user.'" class="cart-nav"><img src="../img/core-img/cart.png" alt=""> Cart </a>';
+               echo' <a href="telecharger.php" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> rapport</a>';
             ?>
 
             
@@ -188,11 +213,15 @@ if (isset($_POST['addcart'])) {
 
                             <div class="short_overview my-5">
                                 <p>'.$description.'</p>
+                               
                             </div>
+                           
                             <div>
 							<div id="srcheader">
 								<form id="" method="post" action="">
+								  Quantity : <input type="number" value="1" step="1" name="qty" min="1" max="10"/><br><br>
 								<button type="submit" name="addcart" value="Add to cart" class="btn amado-btn">Add to cart</button>
+								
 								</form><br/>
 								
 								<div class="srcclear"></div>
@@ -241,9 +270,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="shop.html">Shop</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="cart.html">Cart</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="checkout.html">Comment</a>
